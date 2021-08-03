@@ -1,0 +1,11 @@
+<section class="row justify-content-around mt-5 bg-dark">
+    <h2 class="text-center text-danger p-4">NEW RELEASES</h2>
+<div class="card mb-5" style="width: 18rem;" *ngFor="let s of songs">
+    <img src="../../../assets/images/{{s.songImage}}" class="card-img-top" alt="..." height="250vw">
+    <div class="card-body">
+      <h5 class="card-title text-center">{{s.songName}}</h5>
+      <p class="card-text text-center">{{s.songSinger}}</p>
+      <button class="btn btn-danger">Play</button>
+    </div>
+  </div>
+</section>

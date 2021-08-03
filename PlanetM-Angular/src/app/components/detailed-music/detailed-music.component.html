@@ -1,0 +1,14 @@
+<section class="container mt-5 py-3 bg-dark">
+    <div class="music-list" *ngIf="music">
+        <section class="row justify-content-around bg-dark">
+          <h2 class="text-center text-danger">DETAILS</h2>
+          <div class="card mb-5 mt-3" style="width: 18rem;">
+            <img [src]="music.musicImage" class="card-img-top" alt="..." height="250vw">
+            <div class="card-body">
+              <h5 class="card-title text-center">{{music.musicName}}</h5>
+              <p class="card-text text-center">{{music.musicSinger}}</p>
+            </div>
+          </div>
+        </section>
+      </div>
+</section>

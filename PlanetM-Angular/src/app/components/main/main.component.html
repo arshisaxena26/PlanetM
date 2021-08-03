@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css"
+  integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
+<section class="container bg-dark text-danger mt-3 py-3">
+  <div class="text-center">
+    <input type="search" [(ngModel)]="search"> &nbsp; &nbsp;
+    <input type="button" class="btn btn-danger" value="Search" (click)="searchSong()">
+  </div>
+</section>
+
+<div class="d-flex">
+  <img src="../assets/images/music.gif">
+  <div class="container card mt-5 bg-dark text-white" style="width: 24rem;" *ngIf="music">
+    <img [src]="music.musicImage" class="card-img-top mt-2" alt="..." height="240vw">
+    <div class="card-body">
+      <h5 class="card-title text-center">{{music.musicName}}</h5>
+      <p class="card-text text-center">{{music.musicSinger}}</p>
+      <ngb-rating [(rate)]="music.musicRating" class="container justify-content-center">
+        <ng-template let-fill="fill">
+          <span class="star" [class.filled]="fill === 100">&#9733;</span>
+        </ng-template>
+      </ngb-rating>
+      <div class="container d-flex justify-content-center mb-3">
+        <mat-icon (click)="prev(music.musicId)" class="px-3">skip_previous</mat-icon>
+        <mat-icon *ngIf=!pause (click)="toggle()" class="px-3">play_arrow</mat-icon>
+        <mat-icon *ngIf=pause (click)="toggle()" class="px-3">pause</mat-icon>
+        <mat-icon (click)="next(music.musicId)" class="px-3">skip_next</mat-icon>
+        <audio>
+          <source [src]="music.musicFile" type="audio/mp4" />
+        </audio>
+        <div *ngIf=!music.favoriteSong>
+          <mat-icon (click)="addFavorites(music)"  id="fav">favorite_border</mat-icon>
+        </div>
+        <div *ngIf=music.favoriteSong>
+          <mat-icon (click)="removeFavorites(music)"  id="fav">favorite</mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+  <img src="../assets/images/music.gif">
+</div>
+
+
+<div class="music-list" *ngIf="favorites && favorites.length else empty">
+  <section class="row justify-content-around mt-5 bg-dark">
+    <h2 class="text-center text-danger p-4">Favorites</h2>
+    <div class="card mb-5" style="width: 18rem;" *ngFor="let f of favorites">
+      <img [src]="f.musicImage" class="card-img-top" alt="..." height="250vw">
+      <div class="card-body">
+        <h5 class="card-title text-center">{{f.musicName}}</h5>
+        <p class="card-text text-center">{{f.musicSinger}}</p>
+        <button class="btn btn-danger" (click)="play(f)">Play</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="music-list" *ngIf="playlist && playlist.length else unavailable">
+  <section class="row justify-content-around mt-5 bg-dark">
+    <h2 class="text-center text-danger p-4">PLAYLIST</h2>
+    <div class="card mb-5" style="width: 18rem;" *ngFor="let p of playlist | filter : search">
+      <img [src]="p.musicImage" class="card-img-top" alt="..." height="250vw">
+      <div class="card-body">
+        <h5 class="card-title text-center">{{p.musicName}}</h5>
+        <p class="card-text text-center">{{p.musicSinger}}</p>
+        <ngb-rating [rate]="p.musicRating" class="container justify-content-center"></ngb-rating>
+        <button class="btn btn-danger mt-2" (click)="play(p)">Play</button>
+        <div class="row mt-3">
+          <button class="btn btn-danger col" (click)="detail(p.musicId)">More</button> &nbsp;
+          <button class="btn btn-danger col" (click)="edit(p.musicId)">Edit</button> &nbsp;
+          <button class="btn btn-danger col" (click)="delete(p)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<ng-template #unavailable>
+  <div class="container bg-dark mt-5 text-danger">
+    <h2 class="text-center py-2">No Records Found!</h2>
+  </div>
+</ng-template>
+
+<ng-template #empty>
+  <div class="container bg-dark mt-5 text-danger">
+    <h2 class="text-center py-2">No Favorites?</h2>
+  </div>
+</ng-template>
+
+<app-aside></app-aside>

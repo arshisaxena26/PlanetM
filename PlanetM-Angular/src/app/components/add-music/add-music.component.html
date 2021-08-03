@@ -1,0 +1,44 @@
+<section class="container mt-5">
+    <h1 class="text-center text-danger">Add Music</h1>
+    <form [formGroup]="musicGroup" (ngSubmit)="OnAdd()">
+      <input type="hidden" class="form-control" formControlName="musicId">
+      <div class="mb-3">
+        <label for="name" class="form-label">Music Name</label>
+        <input type="text" class="form-control" formControlName="musicName"
+          [ngClass]="{ 'is-invalid': submitted && music.musicName.errors }">
+        <div *ngIf="submitted && music.musicName.errors" class="invalid-feedback">
+          <div *ngIf="music.musicName.errors.required">Music Name is required</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="genre" class="form-label">Music Genre</label>
+        <input type="text" class="form-control" formControlName="musicGenre" [ngClass]="{ 'is-invalid': submitted && music.musicGenre.errors }">
+        <div *ngIf="submitted && music.musicGenre.errors" class="invalid-feedback">
+          <div *ngIf="music.musicGenre.errors.required">Music Genre is required</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="image" class="form-label">Music Image</label>
+        <input type="text" class="form-control" formControlName="musicImage" [ngClass]="{ 'is-invalid': submitted && music.musicImage.errors }">
+        <div *ngIf="submitted && music.musicImage.errors" class="invalid-feedback">
+          <div *ngIf="music.musicImage.errors.required">Music Image is required</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="file" class="form-label">Music File</label>
+        <input type="text" class="form-control" formControlName="musicFile" [ngClass]="{ 'is-invalid': submitted && music.musicFile.errors }">
+        <div *ngIf="submitted && music.musicFile.errors" class="invalid-feedback">
+          <div *ngIf="music.musicFile.errors.required">Music File is required</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="artist" class="form-label">Music Artist</label>
+        <input type="text" class="form-control" formControlName="musicSinger" [ngClass]="{ 'is-invalid': submitted && music.musicSinger.errors }">
+        <div *ngIf="submitted && music.musicSinger.errors" class="invalid-feedback">
+          <div *ngIf="music.musicSinger.errors.required">Music Artist is required</div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="musicGroup.invalid">Submit</button> &nbsp;
+      <button type="reset" class="btn btn-danger">Reset</button>
+    </form>
+  </section>

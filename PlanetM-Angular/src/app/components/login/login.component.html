@@ -1,0 +1,24 @@
+<section class="container mt-5">
+    <h1 class="text-center text-danger">Login</h1>
+
+    <form #user="ngForm" (ngSubmit)="submit(user)">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" ngModel required #email="ngModel">
+            <div *ngIf="!email?.valid && (email?.dirty || email?.touched)">
+                Email Required
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" ngModel required #password="ngModel">
+            <div *ngIf="!password?.valid && (password?.dirty || password?.touched)">
+                Password Required
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!user.valid">Login</button> &nbsp;
+        <button type="reset" class="btn btn-danger">Reset</button>
+    </form>
+</section>
