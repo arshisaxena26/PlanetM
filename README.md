@@ -18,4 +18,11 @@ Technologies Used :
 - Angular, jQuery
 - JSON Server
 
+Steps for JSON Server Setup : 
+- Install JSON Server : npm install -g json-server
+- Setting Execution Policy : Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+- Run JSON Server : json-server --watch db.json
+- Access with Links : http://localhost:3000/Songs
+                      http://localhost:3000/Users
+- For More Information : https://www.npmjs.com/package/json-server
 
