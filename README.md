@@ -25,3 +25,8 @@ Steps for JSON Server Setup :
 - Access with Links : http://localhost:3000/Songs, http://localhost:3000/Users
 - For More Information : https://www.npmjs.com/package/json-server
 
+Steps to connect Bootstrap to Angular :
+- Install Bootstrap : npm i bootstrap
+- Search for bootstrap.scss file in node_modules and copy its relative path through right-click menu
+- Add the copied path to styles array in angular.json file
+- Add Import statement to styles.scss file : @import "../node_modules/bootstrap/scss/bootstrap";
