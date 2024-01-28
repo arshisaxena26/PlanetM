@@ -24,6 +24,7 @@ Steps for JSON Server Setup :
 - Run JSON Server : json-server --watch Db/db.json
 - Access with Links : http://localhost:3000/Songs, http://localhost:3000/Users
 - For More Information : https://www.npmjs.com/package/json-server
+- Run using Live Server Extension of VSCode.
 
 Steps to connect Bootstrap to Angular :
 - Install Bootstrap : npm i bootstrap
